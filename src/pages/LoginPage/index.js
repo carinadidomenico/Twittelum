@@ -5,11 +5,39 @@ import Widget from '../../components/Widget'
 import './loginPage.css'
 
 class LoginPage extends Component {
-    
+    constructor (props) {
+        super(props);
+        this.state = {
+            estado: true
+        }
+    }
     fazerLogin = (e) => {
         e.preventDefault()
-        console.log (this.inputLogin.value)
-        // console.log (this.inputSenha.value)
+        const dadosDeLogin = {
+            login: this.inputLogin.value,
+            senha: this.inputSenha.value
+        }
+        console.log (dadosDeLogin)
+        fetch ('http://localhost:3001/login', {
+            method: 'POST',
+            body: JSON.stringify (dadosDeLogin)
+        })
+        .then (resp => {
+            if (!resp.ok){
+                throw resp;
+            }
+            return resp.json()
+        })
+        .then ((respJson) => {
+            localStorage.setItem ('token', respJson.token)
+            this.props.history.push('/')
+        })
+        .catch ((err) => {
+            err.json()
+            .then((res) => {
+                console.log('catch', res)
+            })
+        })
     }
     
 
@@ -42,9 +70,9 @@ class LoginPage extends Component {
                                         name="senha"
                                     />
                                 </div>
-                                {/* <div className="loginPage__errorBox">
-                                    Mensagem de erro!
-                                </div> */}
+                                <div className="loginPage__errorBox">
+                                    {this.props.message}
+                                </div>
                                 <div className="loginPage__inputWrap">
                                     <button className="loginPage__btnLogin" type="submit">
                                         Logar
