@@ -5,10 +5,12 @@
   justify-content: center;
   align-items: flex-end;
 }
+
 .btn--clean {
   border: 0;
   background: none;
 }
+
 .btn--blue {
   vertical-align: bottom;
   color: white;
@@ -25,9 +27,10 @@
   white-space: nowrap;
   margin-left: 3px;
 }
+
 .btn--blue:hover,
 .btn--blue:focus {
-  background-color: #58CEF2;
+  background-color: #DDA0DD;
 }
 
 .btn--remove {
