@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import './tweet.css'
 
 class Tweet extends Component {
-    constructor (props) {
-        super(props);
-    }
+    
     render() {
         return (
             <article className="tweet">
