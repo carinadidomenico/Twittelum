@@ -8,6 +8,14 @@
         "senha": "123456"
     },
     {
+        "login": "usuario",
+        "nome": "Usuário",
+        "sobrenome": "da Silva",
+        "foto": "https://avatars3.githubusercontent.com/u/40796841?s=460&v=4",
+        "email": "user@user.com",
+        "senha": "123456"
+    },
+    {
         "login": "omariosouto",
         "nome": "Mario",
         "sobrenome": "Souto",
