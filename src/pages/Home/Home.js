@@ -38,7 +38,7 @@ class Home extends Component {
                             <span className={`${this.state.novoTweet.length > 140 ? "novoTweet__status novoTweet__status--invalido" : "novoTweet__status"}`}>{this.state.novoTweet.length}/140</span>
                             <textarea className="novoTweet__editor" placeholder="O que está acontecendo?" value={this.state.novoTweet} onChange={(event) => this.setState({novoTweet: event.target.value})}></textarea>
                         </div>
-                        <button type="submit" className="novoTweet__envia" disabled={this.state.novoTweet.length > 140}>Tweetar</button>
+                        <button type="submit" className="novoTweet__envia" disabled={this.state.novoTweet.length > 140 || this.state.novoTweet === 0}>Tweetar</button>
                     </form>
                 </Widget>
                 <Widget>
