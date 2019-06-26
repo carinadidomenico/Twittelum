@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
 import './tweet.css'
 
+class Curtir extends React.Component {
+    constructor(props) {
+        super (props)
+        this.state = {
+            prevState: true
+        }
+    }
+}
+
+
 class Tweet extends Component {
     
     render() {
@@ -18,7 +28,10 @@ class Tweet extends Component {
                 </p>
                 <footer className="tweet__footer">
                     <button className="btn btn--clean">
-                        <svg className="icon icon--small iconHeart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5">
+                        <svg 
+                        className={`${this.setState.prevState = false ? "icon icon--small iconHeart" : "icon icon--small iconHeart--active"}`}
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 47.5 47.5">
                             <defs>
                                 <clipPath id="a">
                                     <path d="M0 38h38V0H0v38z"></path>
