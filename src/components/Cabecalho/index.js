@@ -7,10 +7,11 @@ class Cabecalho extends Component {
         return (
             <header className="cabecalho">
                 <div className="cabecalho__container container">
+                    <img className="img__logo" src="https://image.flaticon.com/icons/svg/1089/1089421.svg" alt="Logo gatinho roxo"></img>
                     <h1 className="cabecalho__logo">
                         <a href="/">Twitelum</a>
                     </h1>
-                    { this.props.children }
+                    {this.props.children}
                 </div>
             </header>
         )
