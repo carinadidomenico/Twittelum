@@ -8,7 +8,7 @@ class LoginPage extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            estado: true
+            mensagemErro: false
         }
     }
     fazerLogin = (e) => {
@@ -29,19 +29,22 @@ class LoginPage extends Component {
             return resp.json()
         })
         .then ((respJson) => {
-            localStorage.setItem ('token', respJson.token)
+            localStorage.setItem ('TOKEN', respJson.token)
             this.props.history.push('/')
         })
-        .catch ((err) => {
+        .catch((err) => {
             err.json()
-            .then((res) => {
-                console.log('catch', res)
+            .then((res) =>{
+                this.setState ({
+                    mensagemErro: true
+                })
+                console.log (res.message)
             })
-        })
+       })
     }
-    
 
-    render() {
+
+      render() {
 
         return (
             <Fragment>
@@ -70,9 +73,11 @@ class LoginPage extends Component {
                                         name="senha"
                                     />
                                 </div>
-                                <div className="loginPage__errorBox">
-                                    {this.props.message}
-                                </div>
+
+                                {this.state.mensagemErro === true ? 
+                                    <div className="loginPage__errorBox">Usuário ou senha inválidos.</div> : 
+                                    ''} 
+
                                 <div className="loginPage__inputWrap">
                                     <button className="loginPage__btnLogin" type="submit">
                                         Logar

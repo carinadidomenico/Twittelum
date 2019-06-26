@@ -30,6 +30,10 @@
     margin: 15px 0;
 }
 
+.loginPage__errorBox--active {
+    display: block
+}
+
 .loginPage__label {
     font-size: 14px;
     display: inline-block;
