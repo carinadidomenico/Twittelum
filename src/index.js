@@ -12,7 +12,6 @@ import "./assets/css/iconHeart.css";
 import "./assets/css/notificacao.css";
 
 import "./assets/css/novoTweet.css";
-// import './index.css';
 
 import * as serviceWorker from "./serviceWorker";
 

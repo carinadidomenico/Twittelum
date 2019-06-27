@@ -5,6 +5,7 @@ import Dashboard from '../../components/Dashboard'
 import Widget from '../../components/Widget'
 import TrendsArea from '../../components/TrendsArea'
 import Tweet from '../../components/Tweet'
+import {postTweets} from '../../services/tweets'
 
 class Home extends Component {
     constructor(props) {
@@ -17,14 +18,37 @@ class Home extends Component {
 
     adicionaTweet = (event) => {
         event.preventDefault();
-        this.setState (stateAnterior => ({
-            tweets: [stateAnterior.novoTweet, ...stateAnterior.tweets],
-            novoTweet: ''
-        }))
+
+        const postarNovoTweet = {
+            conteudo: this.state.novoTweet,
+        }
+
+        // DOIS PARAMETROS QUE A FUNÇÃO PEDE: (url, tweet)
+        postTweets (postarNovoTweet, localStorage.getItem('TOKEN'))
+            .then (resposta => {
+                console.log (resposta.data)
+                this.setState (stateAnterior => ({
+                    tweets: [resposta.data, ...stateAnterior.tweets],
+                    novoTweet: ''
+                }))
+        })
+        
+
+        //FEITO COM MÉTODO FETCH
+
+        // fetch('http://localhost:3001', {
+        //     method: "POST",
+        //     body: JSON.stringify(postTweet)
+        // })
+        //     .then (response => response.json())
+        //     .then (responseJson => {
+        //         console.log (responseJson)
+        //     })
+
     }
 
   render() {
-      console.log (this.state.tweets)
+
     return (
       <Fragment>
         <Cabecalho>
@@ -38,7 +62,7 @@ class Home extends Component {
                             <span className={`${this.state.novoTweet.length > 140 ? "novoTweet__status novoTweet__status--invalido" : "novoTweet__status"}`}>{this.state.novoTweet.length}/140</span>
                             <textarea className="novoTweet__editor" placeholder="O que está acontecendo?" value={this.state.novoTweet} onChange={(event) => this.setState({novoTweet: event.target.value})}></textarea>
                         </div>
-                        <button type="submit" className="novoTweet__envia" disabled={this.state.novoTweet.length > 140 || this.state.novoTweet === 0}>Tweetar</button>
+                        <button type="submit" className="novoTweet__envia" disabled={this.state.novoTweet.length > 140 ||this.state.novoTweet == 0}>Tweetar</button>
                     </form>
                 </Widget>
                 <Widget>
@@ -51,10 +75,9 @@ class Home extends Component {
                         {
                             this.state.tweets.length > 0 ?
                             this.state.tweets.map ((elemento, index) => (
-                                <Tweet texto={elemento} key={index}/>
+                                <Tweet {...elemento} key={index}/>
                             )):
                             <p>Compartilhe seu primeiro tweet!</p>
-
                         }
                     </div>
                 </Widget>

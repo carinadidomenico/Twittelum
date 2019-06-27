@@ -43,7 +43,6 @@ class LoginPage extends Component {
        })
     }
 
-
       render() {
 
         return (
