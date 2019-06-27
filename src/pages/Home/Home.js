@@ -32,7 +32,7 @@ class Home extends Component {
                     novoTweet: ''
                 }))
         })
-        
+
 
         //FEITO COM MÉTODO FETCH
 
