@@ -10,7 +10,7 @@ export default class NavMenu extends Component {
         <ul className={navMenuStyles.navMenu__lista}>
           <li className={navMenuStyles.navMenu__item}>
             <a className={navMenuStyles.navMenu__link} href="/">
-              Bem vindo(a): <br />
+              Bem vindo(a):<br/>
               <strong>{this.props.usuario}</strong>
             </a>
           </li>
@@ -26,7 +26,7 @@ export default class NavMenu extends Component {
           </li>
           <li className={navMenuStyles.navMenu__item}>
             {/* para redirecionar links internos importe {Link} from 'react-router-dom e a tag <Link></Links> e para links externos use <a></a> */}
-            <Link className={navMenuStyles.navMenu__link} onClick={() => localStorage.removeItem ('TOKEN')} href="/login">
+            <Link className={navMenuStyles.navMenu__link} onClick={() => localStorage.removeItem ('TOKEN')} to="/login">
               Logout
             </Link>
           </li>
