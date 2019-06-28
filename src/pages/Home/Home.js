@@ -26,7 +26,6 @@ class Home extends Component {
         // DOIS PARAMETROS QUE A FUNÇÃO PEDE: (url, tweet)
         postTweets (postarNovoTweet, localStorage.getItem('TOKEN'))
             .then (resposta => {
-                console.log (resposta.data)
                 this.setState (stateAnterior => ({
                     tweets: [resposta.data, ...stateAnterior.tweets],
                     novoTweet: ''
@@ -45,6 +44,13 @@ class Home extends Component {
         //         console.log (responseJson)
         //     })
 
+    }
+
+    removeTweet = (idRecebido) => {
+        const apagarTweet = this.state.tweets.filter (tweet=> tweet._id !== idRecebido)
+        this.setState({
+            tweets: apagarTweet
+        })
     }
 
   render() {
@@ -75,7 +81,7 @@ class Home extends Component {
                         {
                             this.state.tweets.length > 0 ?
                             this.state.tweets.map ((elemento, index) => (
-                                <Tweet {...elemento} key={index}/>
+                                <Tweet {...elemento} key={index} remove={this.removeTweet}/>
                             )):
                             <p>Compartilhe seu primeiro tweet!</p>
                         }
