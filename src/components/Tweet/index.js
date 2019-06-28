@@ -21,6 +21,7 @@ class Tweet extends Component {
                     </span>
                 </p>
                 <footer className="tweet__footer">
+                    <button className="btn btn--blue btn--remove" onClick={() => this.props.remove(this.props._id)}>X</button>
                     <button className="btn btn--clean">
                         <svg
                         className={`${this.setState.like = false ? "icon icon--small iconHeart" : "icon icon--small iconHeart--active"}`}
